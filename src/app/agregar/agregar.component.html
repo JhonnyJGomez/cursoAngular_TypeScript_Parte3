@@ -3,27 +3,53 @@
         <div class="form-group">
             <label>Nombre</label>
             <input class="form-control" type="text" formControlName="nombre">
-            <div class="alert alert-danger" role="alert">
-                El nombre es requerido
+            <div *ngIf="formularioCreado.controls['nombre'].invalid && formularioCreado.controls['nombre'].dirty" class="alert alert-danger" role="alert">
+               <span *ngIf="formularioCreado.controls['nombre'].errors.required"> El nombre es requerido </span>
             </div>
         </div>
         <div class="form-group">
             <label>Correo</label>
             <input class="form-control" type="email" formControlName="correo">
-            <div class="alert alert-danger" role="alert">
-                El correo es requerido
-            </div>
-            <div class="alert alert-danger" role="alert">
-                No parece un email valido
+            <div *ngIf="formularioCreado.controls['correo'].invalid && formularioCreado.controls['correo'].dirty">
+                <div *ngIf="formularioCreado.controls['correo'].errors.required" class="alert alert-danger" role="alert">
+                    El correo es requerido
+                </div>
+                <div *ngIf="formularioCreado.controls['correo'].errors.email" class="alert alert-danger" role="alert">
+                    No parece un email valido
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label>Contraseña</label>
-            <input class="form-control" type="password" formControlName="Contrasena">
+            <input class="form-control" type="password" formControlName="contrasena">
         </div>
-        <div class="alert alert-danger" role="alert">
-            La contaseña es requerida
+        <div *ngIf="formularioCreado.controls['contrasena'].invalid &&  formularioCreado.controls['contrasena'].dirty">
+            
+            <div *ngIf="formularioCreado.controls['contrasena'].errors.required" class="alert alert-danger" role="alert">
+                La contaseña es requerida
+            </div>
+            <div *ngIf="formularioCreado.controls['contrasena'].errors.minlength" class="alert alert-danger" role="alert">
+                La contaseña debe tener minimo 8 caracteres
+            </div>
         </div>
-        <button class="btn btn-primary">Agregar</button>
+        <button [disabled] = "!formularioCreado.valid" class="btn btn-primary" (click)="agregar()">Agregar</button>
     </form>
+</div>
+
+
+<div>
+    <h4></h4>
+    <p>    </p>
+    <p>    </p>
+</div>
+
+<div class="container">
+    <div *ngFor="let listaUsuarios of usuario" class="card text-center">
+        <div class="card-header">
+            {{listaUsuarios.nombre}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{listaUsuarios.correo}}</h5>
+        </div>
+    </div>
 </div>
