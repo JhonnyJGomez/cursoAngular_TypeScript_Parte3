@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Usuarios{
   nombre:string,
-  correo: string
+  correo: string,
+  contrasena:string
 }
 
 @Component({
@@ -14,6 +15,8 @@ interface Usuarios{
 export class AgregarComponent implements OnInit {
   formularioCreado:FormGroup;
   usuario:Array<Usuarios> = new Array<Usuarios>();
+  esNuevo:Boolean = true;
+  posicion:number
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -36,5 +39,24 @@ export class AgregarComponent implements OnInit {
   agregar(){
     this.usuario.push(this.formularioCreado.value as Usuarios)
     this.formularioCreado.reset()
+  }
+
+  editarUsuario(posicion:number){
+    this.formularioCreado.setValue({
+      nombre: this.usuario[posicion].nombre,
+      correo: this.usuario[posicion].correo,
+      contrasena: this.usuario[posicion].contrasena
+    })
+    this.esNuevo = false
+    this.posicion = posicion
+  }
+
+  editar(){
+    this.usuario[this.posicion].nombre = this.formularioCreado.value.nombre
+    this.usuario[this.posicion].correo = this.formularioCreado.value.correo 
+    this.usuario[this.posicion].contrasena = this.formularioCreado.value.contrasena
+    this.posicion = -1
+    this.esNuevo = true
+    this.formularioCreado.reset()   
   }
 }

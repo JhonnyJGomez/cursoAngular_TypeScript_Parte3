@@ -32,24 +32,19 @@
                 La contaseña debe tener minimo 8 caracteres
             </div>
         </div>
-        <button [disabled] = "!formularioCreado.valid" class="btn btn-primary" (click)="agregar()">Agregar</button>
+        <button *ngIf="esNuevo" [disabled] = "!formularioCreado.valid" class="btn btn-primary" (click)="agregar()">Agregar</button>
+        <button *ngIf="!esNuevo" class="btn btn-danger" (click)="editar()">Actualizar</button>
     </form>
 </div>
 
-
-<div>
-    <h4></h4>
-    <p>    </p>
-    <p>    </p>
-</div>
-
 <div class="container">
-    <div *ngFor="let listaUsuarios of usuario" class="card text-center">
+    <div *ngFor="let listaUsuarios of usuario, let posicion = index" class="card text-center">
         <div class="card-header">
-            {{listaUsuarios.nombre}}
+            Nombre: {{listaUsuarios.nombre}}
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{listaUsuarios.correo}}</h5>
+            <h5 class="card-title"> Correo: {{listaUsuarios.correo}}</h5>
         </div>
+        <button (click)="editarUsuario(posicion)">Editar</button>
     </div>
 </div>
