@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { splitClasses } from '@angular/compiler';
 
 interface Usuarios{
   nombre:string,
@@ -58,5 +59,9 @@ export class AgregarComponent implements OnInit {
     this.posicion = -1
     this.esNuevo = true
     this.formularioCreado.reset()   
+  }
+
+  eliminarUsuario(posicion:number){
+    this.usuario.splice(posicion,1)
   }
 }
