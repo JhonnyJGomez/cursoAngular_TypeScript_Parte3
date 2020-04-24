@@ -1,3 +1,10 @@
+En esta 3 parte encontramos: 
+
+* Angular Reactive Forms
+    > Form Builder
+    > Validators
+    > Ejemplos
+
 # Formularios
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
