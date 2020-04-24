@@ -1,9 +1,9 @@
-En esta 3 parte encontramos: 
-
+# Curso Angular 3ra Parte
+## En esta 3ra parte encontramos: 
 * Angular Reactive Forms
-    > Form Builder
-    > Validators
-    > Ejemplos
+* Form Builder
+* Validators
+* Ejemplos
 
 # Formularios
 
